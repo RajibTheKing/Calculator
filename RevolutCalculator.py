@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import os
-from math import pi, e, sin, cos, tan, log
+from math import pi, e, sin, cos, tan, log, sqrt
 import sys
 from libs.tkinter_gui.gui_colour import guiForm
 
@@ -36,6 +36,16 @@ def equalButton():
     result = ""
     try:
         result = eval(inputText.get())
+        inputText.set(result)
+    except:
+        result = "ERROR..."
+        inputText.set(result)
+
+def squareRootButton():
+    result = ""
+    try:
+        value = sqrt(float(inputText.get()))
+        result = str(int(value)) if value.is_integer() else str(value)
         inputText.set(result)
     except:
         result = "ERROR..."
@@ -147,11 +157,15 @@ plusimage = plus.subsample(4,4)
 plus = Button(mainFrame, text="+", fg="white",image=plusimage, bd=0, bg="black", cursor="hand2",
               command=lambda: clickButton("+")).grid(row=3, column=3, padx=1, pady=1)
 
+square_root = PhotoImage(file = r"images\square_root.png")
+square_image = square_root.subsample(4,4)
+square_root = Button(mainFrame, text="+", fg="white",image=square_image, bd=0, bg="black", cursor="hand2",
+              command=lambda: squareRootButton()).grid(row=4, column=0, padx=1, pady=1)
 
-zero = PhotoImage(file = r"images\0.png")
+zero = PhotoImage(file = r"images\zero.png")
 zeroimage = zero.subsample(4,4)
 zero = Button(mainFrame, text="0", fg="black",image=zeroimage, bd=0, bg="black", cursor="hand2",
-              command=lambda: clickButton(0)).grid(row=4, column=0, columnspan=2, padx=1, pady=1)
+              command=lambda: clickButton(0)).grid(row=4, column=1, padx=1, pady=1)
 
 point = PhotoImage(file = r"images\point.png")
 pointimage = point.subsample(4,4)
